@@ -1,15 +1,11 @@
 const isAnagram = (s: string, t: string): boolean => {
-  if(!s.length || !t.length) return false;
+  if (s.length !== t.length) return false;
   const charCount: Record<string, number> = {};
-  for (const char of s) {
-    charCount[char] = (charCount[char] || 0) + 1;
+  for (let i = 0; i < s.length; i++) {
+    charCount[s[i]] = (charCount[s[i]] || 0) + 1;
+    charCount[t[i]] = (charCount[t[i]] || 0) - 1;
   }
-  for (const char of t) {
-    if (!(char in charCount)) return false;
-    charCount[char]--;
-    if (charCount[char] === 0) delete charCount[char]
-  }
-  return Object.keys(charCount).length === 0;  
+  return Object.values(charCount).every((count) => count === 0);
 };
 
 describe("Valid Anagram problem", () => {
