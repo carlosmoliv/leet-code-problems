@@ -1,11 +1,10 @@
 const containsDuplicate = (nums: number[]): boolean => {
   const set = new Set();
-  let hashDuplicate = false;
   for (const num of nums) {
-    if (set.has(num)) hashDuplicate = true;
+    if (set.has(num)) return true;
     set.add(num);
   }
-  return hashDuplicate;
+  return false;
 };
 
 describe("Contains Duplicate Problem", () => {
