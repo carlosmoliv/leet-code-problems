@@ -2,15 +2,13 @@
 // You may assume that each input would have exactly one solution, and you may not use the same element twice.
 // You can return the answer in any order
 const twoSum = (nums: number[], target: number): number[] => {
-  const indexes = new Map<number, number>();
+  const indexMap = new Map();
   for (let i = 0; i < nums.length; i++) {
-    let complement = target - nums[i];
-    if (indexes.has(complement)) {
-      return [indexes.get(complement)!, i];
-    }
-    indexes.set(nums[i], i);
+    const complement = target - nums[i];
+    if (indexMap.has(complement)) return [indexMap.get(complement), i];
+    indexMap.set(nums[i], i);
   }
-  throw Error("No solution found");
+  throw new Error("No solution found.");
 };
 
 describe("Two sum", () => {
